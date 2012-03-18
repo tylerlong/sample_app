@@ -1,13 +1,13 @@
 source 'http://ruby.taobao.org'
 
-gem 'rails', '3.2.2'
+gem 'rails'
+gem 'pg'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 group :development, :test do
-	gem 'sqlite3'
-	gem 'rspec-rails'
+  gem 'rspec-rails'
 end
 
 
@@ -16,23 +16,14 @@ end
 group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
-
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer'
-
   gem 'uglifier'
 end
 
 gem 'jquery-rails'
 
 group :test do
-	gem 'capybara'
+  gem 'capybara'
 end
-
-group :production do
-	gem 'pg'
-end
-
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
