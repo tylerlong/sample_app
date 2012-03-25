@@ -6,10 +6,10 @@ gem 'pg'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-group :development, :test do
+group :development do
   gem 'rspec-rails'
+  gem 'guard-rspec'
 end
-
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -22,7 +22,10 @@ end
 gem 'jquery-rails'
 
 group :test do
+  gem 'rspec-rails'
   gem 'capybara'
+  gem 'rb-inotify'
+  gem 'libnotify'
 end
 
 # To use ActiveModel has_secure_password

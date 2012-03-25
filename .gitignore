@@ -17,3 +17,4 @@
 # Other unneeded files
 doc/
 *.swp
+bundler_stubs/
