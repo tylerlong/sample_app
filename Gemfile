@@ -10,6 +10,7 @@ gem 'bootstrap-sass'
 group :development do
   gem 'rspec-rails'
   gem 'guard-rspec'
+  gem 'annotate', '~> 2.4.1.beta'
 end
 
 # Gems used only for assets and not required
