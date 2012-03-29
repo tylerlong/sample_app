@@ -4,6 +4,7 @@
 
 $grayMediumLight: #eaeaea;
 
+
 /* universal */
 
 html {
@@ -70,7 +71,6 @@ p {
   font-weight: bold;
   line-height: 1;
   &:hover {
-    color: white;
     text-decoration: none;
   }
 }
