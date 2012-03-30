@@ -3,6 +3,7 @@ source 'http://ruby.taobao.org'
 gem 'rails'
 gem 'pg'
 gem 'bootstrap-sass'
+gem 'bcrypt-ruby'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
