@@ -32,6 +32,8 @@ group :test do
   gem 'guard-spork'
   gem 'spork'
   gem 'factory_girl_rails'
+  gem 'cucumber-rails'
+  gem 'database_cleaner'
 end
 
 # To use ActiveModel has_secure_password

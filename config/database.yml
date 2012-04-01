@@ -7,6 +7,9 @@ development:
   <<: *common
   database: sample_app_dev
 
-test:
+test: &test
   <<: *common
   database: sample_app_test
+
+cucumber:
+  <<: *test
