@@ -27,18 +27,12 @@ describe "User pages" do
         before { click_button "Create my account" }
         it { should have_selector('title', text: "Sign up") }
         it { should have_selector('div', text: "The form contains 6 errors") }
-        it { should have_selector('li', text: "* Name can't be blank") }
         it { should have_selector('li', text: "* Email can't be blank") }
       end
     end
 
     describe "with valid information" do
-      before do
-        fill_in "Name",         with: "Example User"
-        fill_in "Email",        with: "user@example.com"
-        fill_in "Password",     with: "foobar"
-        fill_in "Confirmation", with: "foobar"
-      end
+      before { valid_signup }
       it "should create a user" do
         expect { click_button "Create my account" }.to change(User, :count).by(1)
       end
@@ -46,7 +40,7 @@ describe "User pages" do
         before { click_button "Create my account" }
         let(:user) { User.find_by_email('user@example.com') }
         it { should have_selector('title', text: user.name) }
-        it { should have_selector('div.alert.alert-success', text: 'Welcome') }
+        it { should have_success_message('Welcome') }
         it { should have_link('Sign out') }
       end
     end
