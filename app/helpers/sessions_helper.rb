@@ -9,17 +9,17 @@ module SessionsHelper
     !current_user.nil?
   end
 
+  def sign_out
+    current_user = nil
+    session.delete(:remember_token)
+  end
+
   def current_user=(user)
     @current_user = user
   end
 
   def current_user
     @current_user ||= user_from_remember_token
-  end
-
-  def sign_out
-    current_user = nil
-    session.delete(:remember_token)
   end
 
   private
