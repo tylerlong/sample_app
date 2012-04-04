@@ -14,11 +14,34 @@ describe "User pages" do
     describe "pagination" do
       before(:all) { 30.times { FactoryGirl.create(:user) } }
       after(:all)  { User.delete_all }
+
+      let(:first_page)  { User.paginate(page: 1) }
+      let(:second_page) { User.paginate(page: 2) }
+
       it { should have_link('Next') }
       its(:html) { should match('>2</a>') }
       it "should list each user" do
         User.all[0..2].each do |user|
           page.should have_selector('li', text: user.name)
+        end
+      end
+      it "should list the first page of users" do
+        first_page.each do |user|
+          page.should have_selector('li', text: user.name)
+        end
+      end
+      it "should not list the second page of users" do
+        second_page.each do |user|
+          page.should_not have_selector('li', text: user.name)
+        end
+      end
+      describe "showing the second page" do
+        before { visit users_path(page: 2) }
+
+        it "should list the second page of users" do
+          second_page.each do |user|
+            page.should have_selector('li', text: user.name)
+          end
         end
       end
     end
@@ -110,6 +133,24 @@ describe "User pages" do
       it { should have_link('Sign out', :href => signout_path) }
       specify { user.reload.name.should  == new_name }
       specify { user.reload.email.should == new_email }
+    end
+  end
+
+  describe "destroy" do
+    let(:user) { FactoryGirl.create(:user) }
+    let(:admin) {FactoryGirl.create(:admin) }
+    before { sign_in admin }
+
+    describe "user exists at first" do
+      specify { User.find_by_id(user.id).should_not == nil }
+    end
+    describe "delete the user, user disappear from db" do
+      before { delete user_path(user) }
+      specify { User.find_by_id(user.id).should == nil }
+    end
+    describe "admin try to delete himself, should fail" do
+      before { delete user_path(admin) }
+      specify { User.find_by_id(admin.id).should_not == nil }
     end
   end
 
