@@ -4,6 +4,7 @@ gem 'rails'
 gem 'pg'
 gem 'bootstrap-sass'
 gem 'bcrypt-ruby'
+gem 'faker'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
