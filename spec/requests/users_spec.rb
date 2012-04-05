@@ -141,16 +141,22 @@ describe "User pages" do
     let(:admin) {FactoryGirl.create(:admin) }
     before { sign_in admin }
 
-    describe "user exists at first" do
-      specify { User.find_by_id(user.id).should_not == nil }
+    describe "at first" do
+      it "should exist" do
+        User.find_by_id(user.id).should_not be_nil
+      end
     end
-    describe "delete the user, user disappear from db" do
+    describe "delete the user" do
       before { delete user_path(user) }
-      specify { User.find_by_id(user.id).should == nil }
+      it "user disappear from db" do
+        User.find_by_id(user.id).should be_nil
+      end
     end
-    describe "admin try to delete himself, should fail" do
+    describe "admin try to delete himself" do
       before { delete user_path(admin) }
-      specify { User.find_by_id(admin.id).should_not == nil }
+      it "should fail" do
+        User.find_by_id(admin.id).should_not be_nil
+      end
     end
   end
 
