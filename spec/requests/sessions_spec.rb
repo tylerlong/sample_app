@@ -74,6 +74,19 @@ describe "Authentication" do
         before { put user_path(user) }
         specify { response.should redirect_to(signin_path) }
       end
+      describe "in the Microposts controller" do
+        describe "submitting to the create action" do
+          before { post microposts_path }
+          specify { response.should redirect_to(signin_path) }
+        end
+        describe "submitting to the destroy action" do
+          before do
+            micropost = FactoryGirl.create(:micropost)
+            delete micropost_path(micropost)
+          end
+          specify { response.should redirect_to(signin_path) }
+        end
+      end
     end
     describe "as wrong user" do
       let(:user) { FactoryGirl.create(:user) }
@@ -104,7 +117,7 @@ describe "Authentication" do
       before { sign_in user }
       describe "try to access the signup_path" do
         before { visit signup_path }
-        it { should have_content("Welcome to") }
+        it { should have_content(user.name) }
       end
       describe "submitting a POST request to the Users#create action" do
         before { post users_path }
